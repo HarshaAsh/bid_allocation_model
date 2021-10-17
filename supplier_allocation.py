@@ -36,13 +36,12 @@ class supplier_allocation:
         self.allocated_bid = {}
     
     def clean_data(self, products, suppliers, bids):
-        products.columns = ['prod_name', 'prod_desc', 'selling_price', 'demand']
+        '''
+            Creates a unique index for all the datasets
+            Combines all the supplier and price data to the bids
+        '''
         products['prod_index'] = products.index
-
-        suppliers.columns = ['supp_name', 'supp_desc', 'trans_cost']
         suppliers['sup_index'] = suppliers.index
-
-        bids.columns = ['prod_name', 'supp_name', 'bid_cost', 'other_cost']
         bids['bid_index'] = bids.index
 
         complete_data = pd.merge(bids, products,on='prod_name',how='left')
@@ -160,3 +159,23 @@ class supplier_allocation:
                     )
         plt.ylabel("")
         return f
+    
+    def plot_bid_heatmap(self, complete_data):
+        complete_data['total_cost'] = complete_data.bid_cost + complete_data.other_cost + complete_data.trans_cost
+        complete_data['total_spends'] = complete_data.total_cost*complete_data.demand
+        prod_list = list(complete_data['prod_name'].unique()) # list of products
+
+        heatmap_data = complete_data[['prod_name', 'supp_name', 'total_cost']].groupby(['supp_name', 'prod_name']).\
+            aggregate({'total_cost':'mean'}).unstack().total_cost.rename_axis([None], axis=1).reset_index()
+        heatmap_data.index = heatmap_data['supp_name']
+        heatmap_data = (heatmap_data-heatmap_data.mean())/heatmap_data.std() # Normalising data
+
+        import seaborn as sns
+        import matplotlib.pyplot as plt
+        fig, ax = plt.subplots(figsize=[10,len(heatmap_data)/3.3])
+        crest_cmap = sns.color_palette("crest", as_cmap=True)
+        sns.heatmap(data=heatmap_data[prod_list], cmap = crest_cmap)
+        plt.title("Scaled bid price across suppliers", fontsize=20, y=1.1,loc='left')
+        ax.set_ylabel('')
+        plt.show()
+        return fig

@@ -1,4 +1,4 @@
-Product Name,Supplier Name,Bid Price,Other Costs
+prod_name,supp_name,bid_cost,other_cost
 Product A,Supplier X,11,10
 Product A,Supplier Y,14,20
 Product A,Supplier Z,11,15

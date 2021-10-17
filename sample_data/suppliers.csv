@@ -1,4 +1,4 @@
-Supplier Name,Supplier Desc,Transportation Cost
+supp_name,supp_desc,trans_cost
 Supplier X,Description for supplier X,21
 Supplier Y,Description for supplier Y,23
 Supplier Z,Description for supplier Z,24

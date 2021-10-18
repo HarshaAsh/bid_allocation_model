@@ -1,4 +1,11 @@
 prod_name,prod_desc,selling_price,demand
-Product A,Description for Product A,10,300
-Product B,Description for Product B,20,200
-Product C,Description for Product C,30,300
+Alpha,Product Alpha,20,600
+Beta,Product Beta,24,450
+Gamma,Product Beta,20,600
+Delta,Product Delta,15,450
+Epsilon,Product Epsilon,22,600
+Mu,Product Mu,18,450
+Sigma,Product Sigma,18,450
+Pi,Product Pi,23,300
+Rho,Product Rho,24,150
+Omega,Product Omega,25,600

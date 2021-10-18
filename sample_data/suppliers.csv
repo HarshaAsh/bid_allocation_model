@@ -1,4 +1,8 @@
 supp_name,supp_desc,trans_cost
-Supplier X,Description for supplier X,21
-Supplier Y,Description for supplier Y,23
-Supplier Z,Description for supplier Z,24
+Do,Supplier Do,34
+Re,Supplier Re,29
+Mi,Supplier Mi,11
+Fa,Supplier Fa,33
+So,Supplier So,28
+La,Supplier La,19
+Ti,Supplier Ti,18
